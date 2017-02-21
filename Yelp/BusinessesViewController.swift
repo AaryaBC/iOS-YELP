@@ -26,12 +26,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
         searchBar.delegate = self
+        self.navigationItem.titleView = self.searchBar
+         self.navigationController?.navigationBar.barTintColor = UIColor.red
         
         Business.searchWithTerm(term: searchText, completion: { (businesses: [Business]?, error: Error?) -> Void in
             
             self.businesses = businesses
             self.filteredResults = businesses
-            self.navigationItem.titleView = self.searchBar
             self.tableView.reloadData()
             if let businesses = businesses {
                 for business in businesses {
